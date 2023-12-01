@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  cognitive_function_container:
+    image: postgres:latest
+    shm_size: 1g
+    restart: always
+    container_name: "cognitive_function_container"
+    ports:
+      - "5434:5434"
+    command: -p 5434
+    environment:
+      - POSTGRES_USER=ryland
+      - POSTGRES_PASSWORD=ryland
+      - POSTGRES_DB=cog_function
+    volumes:
+      - cognitive_function_data_container:/var/lib/postgresql/data
+volumes:
+  cognitive_function_data_container:
