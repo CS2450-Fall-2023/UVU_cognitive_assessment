@@ -7,7 +7,7 @@ services:
     ports:
       - "4000:4000"
     environment:
-      - DB_URL=postgresql://<username>:<password>@flask_db:<port>/postgres
+      - DB_URL=postgresql://username:password@flask_db:5432/postgres
     depends_on:
       - flask_db
   flask_db:
@@ -19,8 +19,8 @@ services:
 #    and set this port to the same. If using port 5432, this command is not needed
 #    command: -p 5434
     environment:
-      - POSTGRES_PASSWORD=<password>
-      - POSTGRES_USER=<username>
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=username
       - POSTGRES_DB=postgres
     volumes:
       - pgdata:/var/lib/postgresql/data
