@@ -39,7 +39,11 @@ def hello_world():
 @app.route("/questions", methods=["GET"])
 def question_list():
     questions = Questions.query.all()
-    return jsonify(questions)
+
+    response = make_response(jsonify(questions), 200)
+    response.headers.add('Content-Type', 'application/json')
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 
 # get a question by group_id
@@ -48,7 +52,10 @@ def question_id(id):
   try:
     questions = Questions.query.filter_by(group_id=id).all()
     if questions:
-      return make_response(jsonify(questions), 200)
+      response = make_response(jsonify(questions), 200)
+      response.headers.add('Content-Type', 'application/json')
+      response.headers.add("Access-Control-Allow-Origin", "*")
+      return response
     return make_response(jsonify({'message': 'group id not found'}), 404)
   except Exception as e:
     return make_response(print(e), 500)
