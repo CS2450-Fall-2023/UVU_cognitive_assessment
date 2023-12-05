@@ -1,9 +1,19 @@
+DROP TABLE IF EXISTS questions;
+DROP TABLE IF EXISTS form_answers;
 CREATE TABLE questions (
     id INT PRIMARY KEY,
     group_id INT NOT NULL,
     next_group_id INT NOT NULL,
     title text NOT NULL,
     content text NOT NULL
+);
+
+CREATE TABLE form_answers (
+	id SERIAL PRIMARY KEY,
+    first_name text NOT NULL,
+    last_name text NOT NULL,
+    cognitive_function text NOT NULL,
+    favorite_color text NOT NULL
 );
 
 INSERT INTO questions VALUES
